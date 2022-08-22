@@ -1,0 +1,4 @@
+streamlit
+fastapi
+uvicorn[standard]
+sentence-transformers
