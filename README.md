@@ -123,3 +123,18 @@
 
 ## 如何做微信机器人
 1. 目前还在开发微信机器人，就是类似于在群里面聊天的，等后面整理好代码，都会分享出来～
+
+## 相关问题
+### 1. 模型加载会失败怎么办?
+1. 如果你使用sbert的模型，可以先下载下来，再传递路径，参考链接为: [https://mp.weixin.qq.com/s/avBvs7chURKJSn25OQiqbg](https://mp.weixin.qq.com/s/avBvs7chURKJSn25OQiqbg)
+2. 其实常规的transformers模型都可以（注意是pytorch版本的），实在不行把文件下载到离线，然后传递路径即可。
+3. 我本质上就是直接使用sentence-transformers包，因此，遇到问题，可以去这个包下面看看。
+
+### 2. 想要提高效率怎么办?
+1. 我这个项目不是从效率角度考虑的，因此效率并不是我的考虑重点。
+2. 不过想要提高效率，有两个关键步骤需要考虑：
+- 2.1 文本转向量的效率，这个可以参考我的仓库：[https://github.com/yuanzhoulvpi2017/quick_sentence_transformers](https://github.com/yuanzhoulvpi2017/quick_sentence_transformers)
+- 2.2 在向量搜索的效率，这个可以使用优秀的数据库，比如Elasticsearch、faiss、milvus。这些优秀的库都是基于更加优秀的算法，去查找的。而我只是使用了cos距离、mrr这些东西，简单的计算。
+- 2.3 虽然pandas、numpy没有Elasticsearch、faiss、milvus这样的库牛，但是我觉得在大部分场景，都是相当够用了。而且都是开箱即用的。
+- 2.4 使用pandas、numpy来做，就是希望对数据流的控制了解地更加深刻，其实更加复杂的内容，也不过是增加更多的算法、更多的数据预处理等。而且这两个包性能在百万级别的数据规模下，效率并不低。
+
